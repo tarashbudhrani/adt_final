@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Dr. Ashok",
+    "role": "Admin",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Nurse Priya",
+    "role": "Nurse",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Nurse Rohan",
+    "role": "Nurse",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Pharmacist Anjali",
+    "role": "Pharmacist",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "System",
+    "role": "Admin",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  }
+]

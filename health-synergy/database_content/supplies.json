@@ -1,0 +1,42 @@
+[
+  {
+    "name": "IV Drip",
+    "category": "Medical Equipment",
+    "stockQuantity": 200,
+    "reorderLevel": 20,
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Bandages",
+    "category": "First Aid",
+    "stockQuantity": 500,
+    "reorderLevel": 100,
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Cotton Rolls",
+    "category": "First Aid",
+    "stockQuantity": 0,
+    "reorderLevel": 50,
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Surgical Gloves",
+    "category": "Protective Gear",
+    "stockQuantity": 999,
+    "reorderLevel": 200,
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "name": "Antibiotic Cream",
+    "category": "Medication",
+    "stockQuantity": 10,
+    "reorderLevel": 30,
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  }
+]

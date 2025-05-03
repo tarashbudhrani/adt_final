@@ -1,0 +1,47 @@
+[
+  {
+    "supply_id": "supply_1",
+    "user_id": "user_1",
+    "quantity": 21,
+    "reason": "emergency",
+    "date": "2025-05-03T01:56:46.988871Z",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "supply_id": "supply_2",
+    "user_id": "user_2",
+    "quantity": 30,
+    "reason": "wound care",
+    "date": "2025-05-03T01:56:46.988871Z",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "supply_id": "supply_3",
+    "user_id": "user_3",
+    "quantity": 48,
+    "reason": "emergency",
+    "date": "2025-05-03T01:56:46.988871Z",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "supply_id": "supply_4",
+    "user_id": "user_4",
+    "quantity": 23,
+    "reason": "wound care",
+    "date": "2025-05-03T01:56:46.988871Z",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  },
+  {
+    "supply_id": "supply_5",
+    "user_id": "user_5",
+    "quantity": 11,
+    "reason": "demo",
+    "date": "2025-05-03T01:56:46.988871Z",
+    "createdAt": "2025-05-03T01:56:46.988871Z",
+    "updatedAt": "2025-05-03T01:56:46.988871Z"
+  }
+]
