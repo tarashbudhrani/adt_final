@@ -1,6 +1,6 @@
-# Sample Database Queries
+# Actual Database Queries Used in This Application
 
-Below are 10 example queries for the database layer, using both MongoDB and SQL/SQLite formats where relevant.
+Below are database queries (MongoDB style) that directly reflect the actual logic and data operations used in this application, based on the backend code (routes and models):
 
 ---
 
@@ -9,10 +9,7 @@ Below are 10 example queries for the database layer, using both MongoDB and SQL/
 ```js
 db.supplies.find({})
 ```
-**SQL/SQLite:**
-```sql
-SELECT * FROM supplies;
-```
+*(Used in: GET /api/supplies)*
 
 ---
 
@@ -21,10 +18,7 @@ SELECT * FROM supplies;
 ```js
 db.supplies.find({ $expr: { $lte: ["$stockQuantity", "$reorderLevel"] } })
 ```
-**SQL/SQLite:**
-```sql
-SELECT * FROM supplies WHERE stockQuantity <= reorderLevel;
-```
+*(Used in: GET /api/supplies/reorder-alert)*
 
 ---
 
@@ -38,50 +32,37 @@ db.supplies.insertOne({
   reorderLevel: 20
 })
 ```
-**SQL/SQLite:**
-```sql
-INSERT INTO supplies (name, category, stockQuantity, reorderLevel)
-VALUES ('Gloves', 'PPE', 100, 20);
-```
+*(Used in: POST /api/supplies)*
 
 ---
 
-## 4. Update a Supply's Stock
+## 4. Update a Supply
 **MongoDB:**
 ```js
 db.supplies.updateOne(
-  { _id: ObjectId("64a1b2c3d4e5f6a7b8c9d0e1") },
+  { _id: ObjectId("SUPPLY_ID") },
   { $set: { stockQuantity: 50, reorderLevel: 10 } }
 )
 ```
-**SQL/SQLite:**
-```sql
-UPDATE supplies SET stockQuantity = 50, reorderLevel = 10 WHERE id = '64a1b2c3d4e5f6a7b8c9d0e1';
-```
+*(Used in: PUT /api/supplies/:id)*
 
 ---
 
 ## 5. Delete a Supply
 **MongoDB:**
 ```js
-db.supplies.deleteOne({ _id: ObjectId("64a1b2c3d4e5f6a7b8c9d0e1") })
+db.supplies.deleteOne({ _id: ObjectId("SUPPLY_ID") })
 ```
-**SQL/SQLite:**
-```sql
-DELETE FROM supplies WHERE id = '64a1b2c3d4e5f6a7b8c9d0e1';
-```
+*(Used in: DELETE /api/supplies/:id)*
 
 ---
 
-## 6. Fetch All Usage Records
+## 6. Fetch All Usage Records (with population)
 **MongoDB:**
 ```js
-db.usageRecords.find({})
+db.usageRecords.find({}) // .populate('supply_id').populate('user_id') in Mongoose
 ```
-**SQL/SQLite:**
-```sql
-SELECT * FROM usageRecords;
-```
+*(Used in: GET /api/usageRecords)*
 
 ---
 
@@ -92,49 +73,55 @@ db.usageRecords.find({
   date: { $gte: new Date(Date.now() - 7*24*60*60*1000) }
 })
 ```
-**SQL/SQLite:**
-```sql
-SELECT * FROM usageRecords WHERE date >= DATE('now', '-7 days');
-```
+*(Used in: GET /api/usageRecords/recent)*
 
 ---
 
-## 8. Total Items Used Per User (Aggregation)
+## 8. Add a Usage Record and Decrement Supply
+**MongoDB:**
+```js
+// Check supply and decrement
+const supply = db.supplies.findOne({ _id: ObjectId("SUPPLY_ID") });
+if (supply.stockQuantity >= 5) {
+  db.supplies.updateOne(
+    { _id: ObjectId("SUPPLY_ID") },
+    { $inc: { stockQuantity: -5 } }
+  );
+  db.usageRecords.insertOne({
+    supply_id: ObjectId("SUPPLY_ID"),
+    user_id: ObjectId("USER_ID"),
+    quantity: 5,
+    reason: "Daily use",
+    date: new Date()
+  });
+}
+```
+*(Used in: POST /api/usageRecords)*
+
+---
+
+## 9. Total Items Used Per User (Aggregation)
 **MongoDB:**
 ```js
 db.usageRecords.aggregate([
-  { $group: { _id: "$user_id", totalItems: { $sum: "$quantity" } } }
+  { $group: { _id: "$user_id", totalItems: { $sum: "$quantity" } } },
+  { $lookup: {
+      from: "users",
+      localField: "_id",
+      foreignField: "_id",
+      as: "user"
+    }
+  },
+  { $unwind: "$user" }
 ])
 ```
-**SQL/SQLite:**
-```sql
-SELECT user_id, SUM(quantity) as totalItems FROM usageRecords GROUP BY user_id;
-```
+*(Used in: GET /api/usageRecords/user-totals)*
 
 ---
 
-## 9. Fetch All Users
+## 10. Fetch All Users
 **MongoDB:**
 ```js
 db.users.find({})
 ```
-**SQL/SQLite:**
-```sql
-SELECT * FROM users;
-```
-
----
-
-## 10. Add a New User
-**MongoDB:**
-```js
-db.users.insertOne({
-  name: "Jane Doe",
-  email: "jane@example.com",
-  role: "admin"
-})
-```
-**SQL/SQLite:**
-```sql
-INSERT INTO users (name, email, role) VALUES ('Jane Doe', 'jane@example.com', 'admin');
-``` 
+*(Used in: GET /api/users)* 
